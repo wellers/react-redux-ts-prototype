@@ -20,22 +20,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="app\components\pageContentBox.tsx" />
-    <None Remove="app\core\requests.ts" />
-    <None Remove="app\types\types.ts" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="package-lock.json" />
     <None Include="package.json" />
     <None Include="tsconfig.json" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="app\apitypes\" />
-  </ItemGroup>
-  <ItemGroup>
-    <TypeScriptCompile Include="app\components\pageContentBox.tsx" />
-    <TypeScriptCompile Include="app\core\requests.ts" />
-    <TypeScriptCompile Include="app\types\types.ts" />
-  </ItemGroup>
-
+  
 </Project>

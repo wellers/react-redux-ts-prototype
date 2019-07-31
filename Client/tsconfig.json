@@ -4,7 +4,6 @@
 		"strict": true,
 		"noEmitOnError": true,
 		"outDir": "../Server/Content/Generated/JS/",
-		//"outDir": "./wwwroot/js/",
 		"removeComments": false,
 		"sourceMap": true,
 		"target": "es5",
@@ -23,10 +22,6 @@
 			"es2018.promise"
 		]
 	},
-	//"exclude": [
-	//  "node_modules",
-	//  "wwwroot"
-	//]
 	"include": [
 		"app/**/*"
 	]
