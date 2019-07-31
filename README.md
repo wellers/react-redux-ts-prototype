@@ -1,4 +1,4 @@
-# ecms-ts-prototype
+# ts-prototype
 
 A project demonstrating the use of ASP.NET Core, TypeScript, React, LESS styling, and webpack bundling, among other things.
 
@@ -21,7 +21,7 @@ Make sure these are installed first:
 
 ### Day-to-day dev
 
-1. Open `ecms-ts-prototype.sln` in Visual Studio
+1. Open `ts-prototype.sln` in Visual Studio
    - The NPM Task Runner should start running `npm run watch` in the background to continuously build the client-side app
    - The build output of the client-side app ends up in the `wwwroot` folder for ASP.NET Core
 2. Run the project
@@ -31,7 +31,7 @@ Make sure these are installed first:
 ## Folder Structure
 
 ```
-ecms-ts-prototype/
+ts-prototype/
 |-- app/                  Source directory for the client-side app
 |   |-- components/       React components
 |   |-- index.html        Template for the single page app index
