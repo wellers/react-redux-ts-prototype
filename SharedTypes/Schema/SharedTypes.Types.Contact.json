@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Contact",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "Title": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "Forename": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "Surname": {
+      "type": [
+        "null",
+        "string"
+      ]
+    }
+  }
+}

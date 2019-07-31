@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "ContactSearch",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "PageNumber"
+  ],
+  "properties": {
+    "SearchTerm": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "PageNumber": {
+      "type": "integer",
+      "format": "int32"
+    }
+  }
+}

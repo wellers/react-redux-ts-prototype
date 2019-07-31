@@ -1,0 +1,53 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "GetContactsResponse",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "Results",
+    "TotalResultCount",
+    "ResultsPerPage"
+  ],
+  "properties": {
+    "Results": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Contact"
+      }
+    },
+    "TotalResultCount": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "ResultsPerPage": {
+      "type": "integer",
+      "format": "int32"
+    }
+  },
+  "definitions": {
+    "Contact": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "Title": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "Forename": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "Surname": {
+          "type": [
+            "null",
+            "string"
+          ]
+        }
+      }
+    }
+  }
+}
