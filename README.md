@@ -1,4 +1,4 @@
-# ts-prototype
+# ts-redux-prototype
 
 A project demonstrating the use of ASP.NET Core, TypeScript, React, LESS styling, and webpack bundling, among other things.
 
@@ -26,21 +26,4 @@ Make sure these are installed first:
    - The build output of the client-side app ends up in the `wwwroot` folder for ASP.NET Core
 2. Run the project
    - IIS Express will serve the ASP.NET Core project, which in turn will provide the app to the browser
-
-
-## Folder Structure
-
-```
-ts-prototype/
-|-- app/                  Source directory for the client-side app
-|   |-- components/       React components
-|   |-- index.html        Template for the single page app index
-|   `-- index.tsx         The main JS entry point for the app
-|-- wwwroot/              Target directory for the client-side app's build
-|-- package.json          Describes the client-side app's dependencies
-|-- package-lock.json     Describes the client-side app's dependencies
-|-- Program.cs            Entry point for the server-side ASP.NET Core app
-|-- Startup.cs            ASP.NET Core Startup class
-|-- tsconfig.json         TypeScript compiler configuration
-|-- webpack.config.json   Webpack bundler configuration
-```
+   
