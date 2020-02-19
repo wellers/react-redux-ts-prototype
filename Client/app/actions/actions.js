@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var Types = require("../types/types");
+var Types = require("../types/contacts");
 var SharedTypes_Types_GetContactsResponse_1 = require("../apitypes/ts/SharedTypes.Types.GetContactsResponse");
 function requestContacts(pageNumber) {
     return {

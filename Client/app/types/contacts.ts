@@ -20,7 +20,6 @@ export interface ContactsState {
   readonly serverError: string;
 }
 
-
 //redux actions
 export interface RequestContacts { type: typeof REQUEST_CONTACTS, pageNumber: number }
 export interface ReceiveContacts { type: typeof RECEIVE_CONTACTS, results: ReadonlyArray<Contact>, totalResultsCount: number; resultsPerPage: number }

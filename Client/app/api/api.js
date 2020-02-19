@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Actions = require("../actions/actions");
-var Types = require("../types/types");
+var Types = require("../types/contacts");
 var requests_1 = require("../core/requests");
 exports.fetchContacts = function (search) { return function (dispatch) {
     dispatch(Actions.requestContacts(search.pageNumber));

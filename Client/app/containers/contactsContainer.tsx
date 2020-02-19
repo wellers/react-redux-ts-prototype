@@ -5,7 +5,7 @@ import LoadObject from "../loadObject";
 import { connect } from "react-redux";
 import { AppState } from "../stores";
 import PageContentBox from "../components/pageContentBox";
-import { ContactRecord, ContactActions } from "../types/types";
+import { ContactRecord, ContactActions } from "../types/contacts";
 import { ContactSearch } from "../apitypes/ts/SharedTypes.Types.ContactSearch";
 import * as API from "../api/api";
 
@@ -76,9 +76,9 @@ class ContactsContainer extends React.Component<Props, State> {
               {this.props.contacts.isLoading
                 ? <Button onClick={this._onSearch} disabled>
                   <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>&nbsp;&nbsp;
-                            <span>Searching...</span>
+                  <span>Searching...</span>
                 </Button>
-                : <Button onClick={this._onSearch}>Find Duplicates</Button>
+                : <Button onClick={this._onSearch}>Search</Button>
               }
             </Col>
           </Row>

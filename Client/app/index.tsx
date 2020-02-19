@@ -14,13 +14,13 @@ import * as ReactDOM from "react-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import configureStore from "./configureStore";
 import { Provider } from "react-redux";
-import ContactsContainer from './containers/contactsContainer';
+import AppRouter from "./AppRouter";
 
 const store = configureStore();
 
 ReactDOM.render(
   <Provider store={store}>
-    <ContactsContainer />
+    <AppRouter></AppRouter>
   </Provider>,
-  document.getElementById("example")
+  document.getElementById("root")
 );

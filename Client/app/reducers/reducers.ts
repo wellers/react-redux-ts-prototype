@@ -1,4 +1,4 @@
-﻿import { ContactsState, ContactRecord, ContactActions, REQUEST_CONTACTS, RECEIVE_CONTACTS, RECEIVE_SERVER_ERROR } from "../types/types";
+﻿import { ContactsState, ContactRecord, ContactActions, REQUEST_CONTACTS, RECEIVE_CONTACTS, RECEIVE_SERVER_ERROR } from "../types/contacts";
 import LoadObject from "../loadObject";
 import { Contact } from "../apitypes/ts/SharedTypes.Types.GetContactsResponse";
 

@@ -1,5 +1,5 @@
 ﻿import * as Actions from "../actions/actions";
-import * as Types from "../types/types";
+import * as Types from "../types/contacts";
 import { ContactSearch } from "../apitypes/ts/SharedTypes.Types.ContactSearch";
 import { postRequest } from "../core/requests";
 

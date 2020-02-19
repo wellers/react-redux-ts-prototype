@@ -1,6 +1,6 @@
 ﻿import * as React from "react";
 
-import "./pageContentBox.less";
+import "./PageContentBox.less";
 
 export default class PageContentBox extends React.Component<Props> {
   constructor(props: Props) {

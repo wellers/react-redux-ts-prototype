@@ -6,8 +6,8 @@ namespace Server.Controllers
 {
 	public class HomeController : Controller
 	{
-		public const string TypeScriptVirtualFolderName = "App";
-		public string TypeScriptMountVirtualPath = $"/{TypeScriptVirtualFolderName}";
+		public const string TypeScriptVirtualFolderName = "DMS";
+		public string TypeScriptMountVirtualPath = $"/App/{TypeScriptVirtualFolderName}";
 		public const string TypeScriptMountPhysicalPath = "/Content/Generated";		
 
 		public ActionResult TypeScriptOutputPath()
