@@ -1,8 +1,10 @@
 ﻿import * as React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import HomeContainer from "./containers/HomeContainer";
 import ContactsContainer from "./containers/ContactsContainer";
 
 export const RouterUrls = {
+	HomeUrl: '/',
 	ContactsUrl: '/Contacts'
 }
 
@@ -11,11 +13,18 @@ export default function AppRouter() {
 		<>
 			<Router basename="/App">
 				<Switch>
+					<Route exact={true} path={RouterUrls.HomeUrl} component={Home} />
 					<Route exact={true} path={RouterUrls.ContactsUrl} component={Contacts} />
 					<Route component={PageNotFound} />
 				</Switch>
 			</Router>
 		</>
+	);
+}
+
+function Home() {
+	return (
+		<HomeContainer />
 	);
 }
 

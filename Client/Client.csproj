@@ -20,9 +20,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="app\containers\HomeContainer.tsx" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="package-lock.json" />
     <None Include="package.json" />
     <None Include="tsconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="app\containers\HomeContainer.tsx" />
   </ItemGroup>
   
 </Project>
