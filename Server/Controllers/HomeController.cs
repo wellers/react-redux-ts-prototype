@@ -5,9 +5,8 @@ using System.Web.Mvc;
 namespace Server.Controllers
 {
 	public class HomeController : Controller
-	{
-		public const string TypeScriptVirtualFolderName = "DMS";
-		public string TypeScriptMountVirtualPath = $"/App/{TypeScriptVirtualFolderName}";
+	{		
+		public string TypeScriptMountVirtualPath = $"/App";
 		public const string TypeScriptMountPhysicalPath = "/Content/Generated";		
 
 		public ActionResult TypeScriptOutputPath()
