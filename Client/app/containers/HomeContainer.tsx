@@ -4,11 +4,9 @@ import PageContentBox from "../components/pageContentBox";
 import { Hello } from "../components/Hello";
 import { Link } from "react-router-dom";
 
-interface Props {	
-}
+interface Props { }
 
 class HomeContainer extends React.PureComponent<Props> {
-
 	constructor(props: Props) {
 		super(props);
 	}
@@ -17,7 +15,7 @@ class HomeContainer extends React.PureComponent<Props> {
 		return (
 			<PageContentBox hideTrailingMargin={true}>				
 				<Hello compiler={"Typescript"} framework={"React"} />
-				<Link to={ "/Contacts" }>Contacts</Link>
+				<Link to={"/Contacts"}>Contacts</Link>
 			</PageContentBox>
 		);
 	}	
