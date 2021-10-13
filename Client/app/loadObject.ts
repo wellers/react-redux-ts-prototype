@@ -12,215 +12,215 @@
 // Burg'd from: https://github.com/facebook/flux/blob/master/examples/flux-async/src/load_object/LoadObject.js
 
 export const enum LoadObjectOperation {
-  None = 'None',
-  Creating = 'Creating',
-  Loading = 'Loading',
-  Updating = 'Updating',
-  Deleting = 'Deleting',
+	None = 'None',
+	Creating = 'Creating',
+	Loading = 'Loading',
+	Updating = 'Updating',
+	Deleting = 'Deleting',
 }
 
 export default class LoadObject<Value> {
-  private readonly _operation: LoadObjectOperation;
-  private readonly _hasValue: boolean;
-  private readonly _value?: Value;
-  private readonly _error?: Error;
+	private readonly _operation: LoadObjectOperation;
+	private readonly _hasValue: boolean;
+	private readonly _value?: Value;
+	private readonly _error?: Error;
 
-  private constructor(
-    operation: LoadObjectOperation,
-    hasValue: boolean,
-    value?: Value,
-    error?: Error 
-  ) {
-    this._operation = operation;
-    this._hasValue = hasValue;
-    this._value = value;
-    this._error = error;
-  }
+	private constructor(
+		operation: LoadObjectOperation,
+		hasValue: boolean,
+		value?: Value,
+		error?: Error
+	) {
+		this._operation = operation;
+		this._hasValue = hasValue;
+		this._value = value;
+		this._error = error;
+	}
 
-  get operation() {
-    return this._operation;
-  }
+	get operation() {
+		return this._operation;
+	}
 
-  get value(): Value {
-    if (!this.hasValue) {
-      throw new Error('Expected load object to have a value set');
-    }
-    return this._value!; // Inferred as defined from "hasValue"
-  }
+	get value(): Value {
+		if (!this.hasValue) {
+			throw new Error('Expected load object to have a value set');
+		}
+		return this._value!; // Inferred as defined from "hasValue"
+	}
 
-  get error(): Error {
-    if (!this.hasError) {
-      throw new Error('Expected load object to have an error set');
-    }
-    return this._error!; // Inferred as defined from "hasError"
-  }
+	get error(): Error {
+		if (!this.hasError) {
+			throw new Error('Expected load object to have an error set');
+		}
+		return this._error!; // Inferred as defined from "hasError"
+	}
 
-  get hasOperation() {
-    return (this._operation != LoadObjectOperation.None);
-  }
+	get hasOperation() {
+		return (this._operation != LoadObjectOperation.None);
+	}
 
-  get hasValue() {
-    return this._hasValue;
-  }
+	get hasValue() {
+		return this._hasValue;
+	}
 
-  get hasError() {
-    return !!this._error;
-  }
+	get hasError() {
+		return !!this._error;
+	}
 
-  get isEmpty() {
-    return !this.hasValue && !this.hasOperation && !this.hasError;
-  }
+	get isEmpty() {
+		return !this.hasValue && !this.hasOperation && !this.hasError;
+	}
 
-  withOperation(operation: LoadObjectOperation) {
-    return new LoadObject(
-      operation,
-      this.hasValue,
-      this._value,
-      this._error
-    );
-  }
+	withOperation(operation: LoadObjectOperation) {
+		return new LoadObject(
+			operation,
+			this.hasValue,
+			this._value,
+			this._error
+		);
+	}
 
-  withValue(value: Value) {
-    return new LoadObject(
-      this.operation,
-      true,
-      value,
-      this._error
-    );
-  }
+	withValue(value: Value) {
+		return new LoadObject(
+			this.operation,
+			true,
+			value,
+			this._error
+		);
+	}
 
-  withError(error: Error) {
-    return new LoadObject(
-      this.operation,
-      this.hasValue,
-      this._value,
-      error
-    );
-  }
+	withError(error: Error) {
+		return new LoadObject(
+			this.operation,
+			this.hasValue,
+			this._value,
+			error
+		);
+	}
 
-  removeOperation(): LoadObject<Value> {
-    if (this.operation == LoadObjectOperation.None) {
-      return this;
-    }
-    return new LoadObject<Value>(
-      LoadObjectOperation.None,
-      this.hasValue,
-      this._value,
-      this._error
-    );
-  }
+	removeOperation(): LoadObject<Value> {
+		if (this.operation == LoadObjectOperation.None) {
+			return this;
+		}
+		return new LoadObject<Value>(
+			LoadObjectOperation.None,
+			this.hasValue,
+			this._value,
+			this._error
+		);
+	}
 
-  removeValue(): LoadObject<Value> {
-    if (!this._value || !this.hasValue) {
-      return this;
-    }
-    return new LoadObject<Value>(
-      this.operation,
-      false,
-      undefined,
-      this._error
-    );
-  }
+	removeValue(): LoadObject<Value> {
+		if (!this._value || !this.hasValue) {
+			return this;
+		}
+		return new LoadObject<Value>(
+			this.operation,
+			false,
+			undefined,
+			this._error
+		);
+	}
 
-  removeError(): LoadObject<Value> {
-    if (!this.hasError) {
-      return this;
-    }
-    return new LoadObject<Value>(
-      this.operation,
-      this.hasValue,
-      this._value,
-      undefined
-    );
-  }
+	removeError(): LoadObject<Value> {
+		if (!this.hasError) {
+			return this;
+		}
+		return new LoadObject<Value>(
+			this.operation,
+			this.hasValue,
+			this._value,
+			undefined
+		);
+	}
 
-  map(fn: (value: Value) => Value) {
-    if (!this.hasValue) {
-      return this;
-    }
-    return this.withValue(fn(this.value));
-  }
+	map(fn: (value: Value) => Value) {
+		if (!this.hasValue) {
+			return this;
+		}
+		return this.withValue(fn(this.value));
+	}
 
-  get isCreating() {
-    return (this.operation == LoadObjectOperation.Creating);
-  }
+	get isCreating() {
+		return (this.operation == LoadObjectOperation.Creating);
+	}
 
-  get isLoading() {
-    return (this.operation == LoadObjectOperation.Loading);
-  }
+	get isLoading() {
+		return (this.operation == LoadObjectOperation.Loading);
+	}
 
-  get isUpdating() {
-    return (this.operation == LoadObjectOperation.Updating);
-  }
+	get isUpdating() {
+		return (this.operation == LoadObjectOperation.Updating);
+	}
 
-  get isDeleting() {
-    return (this.operation == LoadObjectOperation.Deleting);
-  }
+	get isDeleting() {
+		return (this.operation == LoadObjectOperation.Deleting);
+	}
 
-  done() {
-    return this.withOperation(LoadObjectOperation.None);
-  }
+	done() {
+		return this.withOperation(LoadObjectOperation.None);
+	}
 
-  creating() {
-    return this.withOperation(LoadObjectOperation.Creating);
-  }
+	creating() {
+		return this.withOperation(LoadObjectOperation.Creating);
+	}
 
-  loading() {
-    return this.withOperation(LoadObjectOperation.Loading);
-  }
+	loading() {
+		return this.withOperation(LoadObjectOperation.Loading);
+	}
 
-  updating() {
-    return this.withOperation(LoadObjectOperation.Updating);
-  }
+	updating() {
+		return this.withOperation(LoadObjectOperation.Updating);
+	}
 
-  deleting() {
-    return this.withOperation(LoadObjectOperation.Deleting);
-  }
+	deleting() {
+		return this.withOperation(LoadObjectOperation.Deleting);
+	}
 
-  public static empty<Value>() {
-    return this.createFromOperation<Value>(LoadObjectOperation.None);
-  }
+	public static empty<Value>() {
+		return this.createFromOperation<Value>(LoadObjectOperation.None);
+	}
 
-  static creating<Value>() {
-    return this.createFromOperation<Value>(LoadObjectOperation.Creating);
-  }
+	static creating<Value>() {
+		return this.createFromOperation<Value>(LoadObjectOperation.Creating);
+	}
 
-  static loading<Value>() {
-    return this.createFromOperation<Value>(LoadObjectOperation.Loading);
-  }
+	static loading<Value>() {
+		return this.createFromOperation<Value>(LoadObjectOperation.Loading);
+	}
 
-  static updating<Value>() {
-    return this.createFromOperation<Value>(LoadObjectOperation.Updating);
-  }
+	static updating<Value>() {
+		return this.createFromOperation<Value>(LoadObjectOperation.Updating);
+	}
 
-  static deleting<Value>() {
-    return this.createFromOperation<Value>(LoadObjectOperation.Deleting);
-  }
+	static deleting<Value>() {
+		return this.createFromOperation<Value>(LoadObjectOperation.Deleting);
+	}
 
-  static fromValue<Value>(value: Value) {
-    return new LoadObject<Value>(
-      LoadObjectOperation.None,
-      true,
-      value,
-      undefined
-    );
-  }
+	static fromValue<Value>(value: Value) {
+		return new LoadObject<Value>(
+			LoadObjectOperation.None,
+			true,
+			value,
+			undefined
+		);
+	}
 
-  static fromError<Value>(error: Error) {
-    return new LoadObject<Value>(
-      LoadObjectOperation.None,
-      false,
-      undefined,
-      error
-    );
-  }
+	static fromError<Value>(error: Error) {
+		return new LoadObject<Value>(
+			LoadObjectOperation.None,
+			false,
+			undefined,
+			error
+		);
+	}
 
-  private static createFromOperation<Value>(operation: LoadObjectOperation) {
-    return new LoadObject<Value>(
-      operation, 
-      false,
-      undefined,
-      undefined
-    );
-  }
+	private static createFromOperation<Value>(operation: LoadObjectOperation) {
+		return new LoadObject<Value>(
+			operation,
+			false,
+			undefined,
+			undefined
+		);
+	}
 }

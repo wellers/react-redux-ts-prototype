@@ -3,30 +3,30 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ContactsContainer from "./containers/ContactsContainer";
 
 export const RouterUrls = {
-  ContactsUrl: '/Contacts'
+	ContactsUrl: '/Contacts'
 }
 
 export default function AppRouter() {
-  return (
-    <>
-      <Router basename="/App">
-        <Switch>
-          <Route exact={true} path={RouterUrls.ContactsUrl} component={Contacts} />
-          <Route component={PageNotFound} />
-        </Switch>
-      </Router>
-    </>
-  );
+	return (
+		<>
+			<Router basename="/App">
+				<Switch>
+					<Route exact={true} path={RouterUrls.ContactsUrl} component={Contacts} />
+					<Route component={PageNotFound} />
+				</Switch>
+			</Router>
+		</>
+	);
 }
 
 function Contacts() {
-  return (
-    <ContactsContainer />
-  );
+	return (
+		<ContactsContainer />
+	);
 }
 
 function PageNotFound() {
-  return (
-    <span>Page Not Found</span>
-  );
+	return (
+		<span>Page Not Found</span>
+	);
 }

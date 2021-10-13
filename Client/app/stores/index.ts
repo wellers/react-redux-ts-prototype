@@ -2,7 +2,7 @@
 import { contacts } from "../reducers/reducers";
 
 export const rootReducer = combineReducers({
-  contacts
+	contacts
 });
 
 export type AppState = ReturnType<typeof rootReducer>;

@@ -6,18 +6,18 @@ export const RECEIVE_CONTACTS = 'RECEIVE_CONTACTS';
 export const RECEIVE_SERVER_ERROR = 'RECEIVE_SERVER_ERROR';
 
 export type ContactRecord = {
-  readonly title: string;
-  readonly forename: string;
-  readonly surname: string;
+	readonly title: string;
+	readonly forename: string;
+	readonly surname: string;
 };
 
 // Redux state
 export interface ContactsState {
-  readonly contacts: LoadObject<ReadonlyArray<ContactRecord>>;
-  readonly pageNumber: number;
-  readonly totalResultCount: number;
-  readonly resultsPerPage: number;
-  readonly serverError: string;
+	readonly contacts: LoadObject<ReadonlyArray<ContactRecord>>;
+	readonly pageNumber: number;
+	readonly totalResultCount: number;
+	readonly resultsPerPage: number;
+	readonly serverError: string;
 }
 
 //redux actions
@@ -26,6 +26,6 @@ export interface ReceiveContacts { type: typeof RECEIVE_CONTACTS, results: Reado
 export interface ReceiveServerError { type: typeof RECEIVE_SERVER_ERROR, error: Error }
 
 export type ContactActions =
-  RequestContacts
-  | ReceiveContacts
-  | ReceiveServerError;
+	RequestContacts
+	| ReceiveContacts
+	| ReceiveServerError;

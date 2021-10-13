@@ -6,9 +6,9 @@ import thunkMiddleware from "redux-thunk";
 const loggerMiddleware = createLogger();
 
 export default function configureStore(preloadedState?: AppState) {
-  return createStore(
-    rootReducer,
-    preloadedState,
-    applyMiddleware(thunkMiddleware, loggerMiddleware)
-  );
+	return createStore(
+		rootReducer,
+		preloadedState,
+		applyMiddleware(thunkMiddleware, loggerMiddleware)
+	);
 }

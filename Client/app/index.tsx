@@ -19,8 +19,8 @@ import AppRouter from "./AppRouter";
 const store = configureStore();
 
 ReactDOM.render(
-  <Provider store={store}>
-    <AppRouter></AppRouter>
-  </Provider>,
-  document.getElementById("root")
+	<Provider store={store}>
+		<AppRouter></AppRouter>
+	</Provider>,
+	document.getElementById("root")
 );
