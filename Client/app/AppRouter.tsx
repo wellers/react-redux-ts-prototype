@@ -9,7 +9,7 @@ export const RouterUrls = {
 export default function AppRouter() {
   return (
     <>
-      <Router basename="/App/DMS">
+      <Router basename="/App">
         <Switch>
           <Route exact={true} path={RouterUrls.ContactsUrl} component={Contacts} />
           <Route component={PageNotFound} />
