@@ -5,15 +5,15 @@ import { postRequest } from "../core/requests";
 
 const GetContactsUrl = '/Api/Contacts/GetContacts';
 
-export const fetchContacts = (search: ContactSearch): Actions.ContactAction => dispatch => {
+export const fetchContacts = (search: ContactSearch): Actions.ContactAction => async dispatch => {
   dispatch(Actions.requestContacts(search.pageNumber));
-  return postRequest(GetContactsUrl, search)
-    .then(response => {
-      if (response.hasError) {
-        return dispatch(receiveError(response.error));
-      }
-      return dispatch(Actions.receiveContacts(response.value));
-    });
+  const response = await postRequest(GetContactsUrl, search);
+
+  if (response.hasError) {
+    return dispatch(receiveError(response.error));
+  }
+
+  return dispatch(Actions.receiveContacts(response.value));
 }
 
 export function receiveError(error: Error): Types.ReceiveServerError {

@@ -17,26 +17,31 @@ export async function postRequest(
     body: JSON.stringify(payload.toJSON())
   };
 
-  return fetch(endpoint, options)
-    .then(response => {
-      let error = '';
-      if (!response.ok && response.status) {
-        switch (response.status) {
-          case 404:
-            error = 'Resource not found';
-            break;
-          case 500:
-            error = 'An error has occurred';
-            break;
-          default:
-            error = 'An unexpected error occurred';
-        }
+  try {
+    const response = await fetch(endpoint, options);
+    let error = '';
+
+    if (!response.ok && response.status) {
+      switch (response.status) {
+        case 404:
+          error = 'Resource not found';
+          break;
+        case 500:
+          error = 'An error has occurred';
+          break;
+        default:
+          error = 'An unexpected error occurred';
       }
-      if (error.length > 0) {
-        throw error;
-      }
-      return response;
-    })
-    .then(_ => _.json().then(value => LoadObject.fromValue(value)))
-    .catch(error => LoadObject.fromError(new Error(JSON.stringify(error || ''))));
+    }
+
+    if (error.length > 0) {
+      throw error;
+    }
+
+    const json = await response.json();
+
+    return LoadObject.fromValue(json);
+  } catch (error) {
+    return LoadObject.fromError(new Error(JSON.stringify(error || '')));
+  }
 }
