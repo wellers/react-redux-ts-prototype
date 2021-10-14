@@ -3,7 +3,7 @@
 		"jsx": "react",
 		"strict": true,
 		"noEmitOnError": true,
-		"outDir": "../Server/Content/Generated/JS/",
+		"outDir": "../Web/wwwroot/",
 		"removeComments": false,
 		"sourceMap": true,
 		"target": "es5",

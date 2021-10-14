@@ -39,7 +39,6 @@ export async function postRequest(
 		}
 
 		const json = await response.json();
-
 		return LoadObject.fromValue(json);
 	} catch (error) {
 		return LoadObject.fromError(new Error(JSON.stringify(error || '')));
