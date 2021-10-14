@@ -8,7 +8,7 @@ namespace Web.Controllers
 	[ApiController]		
 	public class ContactsController : ControllerBase
 	{
-		private readonly List<Contact> _contacts = new()
+		private readonly List<Contact> _contacts = new List<Contact>()
 		{
 			new Contact { Title = "Mr", Forename = "Paul", Surname = "Welbourne" },
 			new Contact { Title = "Mr", Forename = "Paul", Surname = "Riding" },

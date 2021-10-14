@@ -3,7 +3,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-	mode: 'development',
+	mode: 'production',
 	entry: './app/index.tsx',
 	devtool: 'source-map',
 	module: {

@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
     <TypeScriptToolsVersion>3.1</TypeScriptToolsVersion>
     <RootNamespace>Client</RootNamespace>
@@ -31,6 +31,10 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="app\containers\HomeContainer.tsx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="app\apitypes\ts\" />
   </ItemGroup>
   
 </Project>
