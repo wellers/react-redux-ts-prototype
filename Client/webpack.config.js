@@ -3,7 +3,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-	mode: 'production',
+	mode: 'development',
 	entry: './app/index.tsx',
 	devtool: 'source-map',
 	module: {
@@ -36,7 +36,7 @@ module.exports = {
 	output: {
 		filename: '[name].[contenthash].js',
 		chunkFilename: '[name].[contenthash].js',
-		path: path.resolve(__dirname, '../Server/Content/Generated/')
+		path: path.resolve(__dirname, '../Web/wwwroot/')
 		//path: path.resolve(__dirname, 'wwwroot')
 	}
 };
