@@ -1,6 +1,6 @@
 # ts-redux-prototype
 
-A project demonstrating the use of ASP.NET Core, TypeScript, React, LESS styling, webpack bundling and NJsonSchema.
+A Web Application project demonstrating the use of ASP.NET Core, TypeScript, Redux, React, LESS styling, Webpack bundling and NJsonSchema for generating shared types.
 
 To get a instance running:
 
