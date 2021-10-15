@@ -17,29 +17,28 @@ namespace Web
 			services
 				.AddControllers()
 				.AddJsonOptions(opts => opts.JsonSerializerOptions.PropertyNamingPolicy = null);
-		}		
+		}
 
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 		{
 			if (env.IsDevelopment())
-				app.UseDeveloperExceptionPage();		
+				app.UseDeveloperExceptionPage();
 
 			app.Use(async (context, next) =>
 			{
 				await next();
 				var path = context.Request.Path.Value;
-
-				if (path.StartsWith(ApiVirtualPath, System.StringComparison.OrdinalIgnoreCase))
-					return;
-
-				if (path.StartsWith(TypeScriptMountVirtualPath, System.StringComparison.OrdinalIgnoreCase))
+				if (!path.StartsWith(ApiVirtualPath, System.StringComparison.OrdinalIgnoreCase))
 				{
-					var pathWithoutVirtualPathPrefix = path.Substring(TypeScriptMountVirtualPath.Length);
-					path = Path.Combine(TypeScriptMountPhysicalPath, pathWithoutVirtualPathPrefix);					
-				}
+					if (path.StartsWith(TypeScriptMountVirtualPath, System.StringComparison.OrdinalIgnoreCase))
+					{
+						var pathWithoutVirtualPathPrefix = path.Substring(TypeScriptMountVirtualPath.Length);
+						path = Path.Combine(TypeScriptMountPhysicalPath, pathWithoutVirtualPathPrefix);
+					}
 
-				context.Request.Path = Path.HasExtension(path) ? path : Path.Combine(TypeScriptMountPhysicalPath, "/index.html");								
-				await next();
+					context.Request.Path = Path.HasExtension(path) ? path : Path.Combine(TypeScriptMountPhysicalPath, "/index.html");				
+					await next();
+				}
 			});
 
 			app.UseDefaultFiles();
