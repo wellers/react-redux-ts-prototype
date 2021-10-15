@@ -1,6 +1,6 @@
-﻿import { ContactsState, ContactRecord, ContactActions, REQUEST_CONTACTS, RECEIVE_CONTACTS, RECEIVE_SERVER_ERROR } from "../types/contacts";
+﻿import { Contact } from "../apitypes/ts/SharedTypes.Types.GetContactsResponse";
 import LoadObject from "../loadObject";
-import { Contact } from "../apitypes/ts/SharedTypes.Types.GetContactsResponse";
+import { ContactActions, ContactRecord, ContactsState, RECEIVE_CONTACTS, RECEIVE_SERVER_ERROR, REQUEST_CONTACTS } from "../types/contacts";
 
 const initialState: ContactsState = {
 	contacts: LoadObject.empty<ReadonlyArray<ContactRecord>>(),

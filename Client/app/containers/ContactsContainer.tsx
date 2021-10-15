@@ -1,13 +1,14 @@
 ﻿import * as React from "react";
-import { Form, Col, Row, Button, Table, FormControlProps } from "react-bootstrap";
-import { ThunkDispatch } from "redux-thunk";
-import LoadObject from "../loadObject";
+import { Button, Col, Form, FormControlProps, Row, Table } from "react-bootstrap";
 import { connect } from "react-redux";
-import { AppState } from "../stores";
-import PageContentBox from "../components/pageContentBox";
-import { ContactRecord, ContactActions } from "../types/contacts";
-import { ContactSearch } from "../apitypes/ts/SharedTypes.Types.ContactSearch";
+import { ThunkDispatch } from "redux-thunk";
 import * as API from "../api/api";
+import { ContactSearch } from "../apitypes/ts/SharedTypes.Types.ContactSearch";
+import PageContentBox from "../components/pageContentBox";
+import LoadObject from "../loadObject";
+import { AppState } from "../stores";
+import { ContactActions, ContactRecord } from "../types/contacts";
+import "./ContactsContainer.less";
 
 interface Props {
 	readonly contacts: LoadObject<ReadonlyArray<ContactRecord>>;
@@ -24,9 +25,11 @@ interface State {
 
 type EventHandler<T> = (ev: T) => void;
 type TextChangedEvent = React.FormEvent<FormControlProps>;
+type KeyDownEvent = React.KeyboardEvent<HTMLElement>;
 
 class ContactsContainer extends React.Component<Props, State> {
 	readonly _searchTermChange: EventHandler<TextChangedEvent>;
+	readonly _searchKeyDown: EventHandler<KeyDownEvent>;
 	readonly _onSearch: () => void;
 
 	constructor(props: Props) {
@@ -35,19 +38,26 @@ class ContactsContainer extends React.Component<Props, State> {
 			searchTerm: ''
 		};
 		this._searchTermChange = this.handleFieldChange('searchTerm', ev => (ev.currentTarget.value || ''));
-		this._onSearch = () => this._fetchForCurrentCriteria();
+		this._searchKeyDown = ({ key }) => this.handleKeyDown(key);
+		this._onSearch = () => this.fetchForCurrentCriteria();
 	}
 
 	componentDidMount() {
-		this._fetchForCurrentCriteria();
+		this.fetchForCurrentCriteria();
 	}
 
-	_fetchForCurrentCriteria(pageNumber?: number) {
+	fetchForCurrentCriteria(pageNumber?: number) {
 		const search = new ContactSearch({
 			searchTerm: (this.state.searchTerm || ''),
 			pageNumber: (pageNumber || 1)
 		});
 		this.props.dispatch(API.fetchContacts(search));
+	}
+
+	handleKeyDown(key: string) {
+		if (key === 'Enter') {
+			this.fetchForCurrentCriteria();
+		}
 	}
 
 	handleFieldChange<T, FieldKey extends keyof State>(fieldName: FieldKey, valuePreparer: (e: T) => State[FieldKey]) {
@@ -64,42 +74,48 @@ class ContactsContainer extends React.Component<Props, State> {
 					? <div className="alert alert-danger" role="alert">{serverError}</div>
 					: undefined
 				}
-				<Form>
-					<Row>
-						<Col className="col-xs-12">
-							<Form.Label htmlFor="searchTerm">What are you searching for?</Form.Label>
-							<Form.Control type="text" value={this.state.searchTerm} onChange={this._searchTermChange} id="searchTerm"></Form.Control>
-						</Col>
-					</Row>
-					<Row>
-						<Col className="d-flex flex-row-reverse">
-							{this.props.contacts.isLoading
-								? <Button onClick={this._onSearch} disabled>
-									<span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>&nbsp;&nbsp;
-									<span>Searching...</span>
-								</Button>
-								: <Button onClick={this._onSearch}>Search</Button>
-							}
-						</Col>
-					</Row>
-				</Form>
-				<Table>
-					<thead>
-						<tr>
-							<th>Title</th>
-							<th>Forename</th>
-							<th>Surname</th>
-						</tr>
-					</thead>
-					{this.props.contacts.hasValue && (this.props.contacts.value.length == 0)
-						? <tbody>
+				<Row className={"searchControl"}>
+					<Col>
+						<Row className={"searchBar"}>
+							<Col className="col-xs-12">
+								<Form.Label htmlFor="searchTerm">What are you searching for?</Form.Label>
+								<Form.Control type="text" value={this.state.searchTerm} onChange={this._searchTermChange} onKeyDown={this._searchKeyDown} id="searchTerm"></Form.Control>
+							</Col>
+						</Row>
+						<Row>
+							<Col className="d-flex flex-row-reverse">
+								{this.props.contacts.isLoading
+									? <Button onClick={this._onSearch} disabled>
+										<span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>&nbsp;&nbsp;
+										<span>Searching...</span>
+									</Button>
+									: <Button onClick={this._onSearch}>Search</Button>
+								}
+							</Col>
+						</Row>
+					</Col>
+				</Row>
+				{this.props.contacts.isLoading
+					? null
+					:
+					<Table>
+						<thead>
 							<tr>
-								<td colSpan={3}>No results</td>
+								<th>Title</th>
+								<th>Forename</th>
+								<th>Surname</th>
 							</tr>
-						</tbody>
-						: this.renderResults(this.props.contacts)
-					}
-				</Table>
+						</thead>
+						{this.props.contacts.hasValue && (this.props.contacts.value.length == 0)
+							? <tbody>
+								<tr>
+									<td colSpan={3}>No results</td>
+								</tr>
+							</tbody>
+							: this.renderResults(this.props.contacts)
+						}
+					</Table>
+				}
 			</PageContentBox>
 		);
 	}

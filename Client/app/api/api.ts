@@ -1,7 +1,7 @@
 ﻿import * as Actions from "../actions/actions";
-import * as Types from "../types/contacts";
 import { ContactSearch } from "../apitypes/ts/SharedTypes.Types.ContactSearch";
 import { postRequest } from "../core/requests";
+import * as Types from "../types/contacts";
 
 const GetContactsUrl = '/Api/Contacts/GetContacts';
 

@@ -1,7 +1,7 @@
 ﻿import { ThunkAction } from "redux-thunk";
-import * as Types from "../types/contacts";
 import { GetContactsResponse } from "../apitypes/ts/SharedTypes.Types.GetContactsResponse";
 import { AppState } from "../stores";
+import * as Types from "../types/contacts";
 
 export function requestContacts(pageNumber: number): Types.RequestContacts {
 	return {

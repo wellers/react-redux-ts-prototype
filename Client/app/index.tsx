@@ -15,6 +15,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import configureStore from "./configureStore";
 import { Provider } from "react-redux";
 import AppRouter from "./AppRouter";
+import "./index.less";
 
 const store = configureStore();
 

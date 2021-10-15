@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="app\components\Menu.tsx" />
     <None Remove="app\containers\HomeContainer.tsx" />
   </ItemGroup>
 
@@ -30,6 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="app\components\Menu.tsx" />
     <TypeScriptCompile Include="app\containers\HomeContainer.tsx" />
   </ItemGroup>
 

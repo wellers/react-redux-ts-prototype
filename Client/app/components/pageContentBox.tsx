@@ -1,5 +1,7 @@
 ﻿import * as React from "react";
-
+import { Container } from "react-bootstrap";
+import { Hello } from "../components/Hello";
+import { Menu } from "../components/Menu";
 import "./PageContentBox.less";
 
 export default class PageContentBox extends React.Component<Props> {
@@ -11,9 +13,13 @@ export default class PageContentBox extends React.Component<Props> {
 		const hideTrailingMargin = this.props.hideTrailingMargin ? 'hide-trailing-margin' : '';
 		const className = `page-content-box ${hideTrailingMargin}`;
 		return (
-			<div className={className}>
-				{this.props.children}
-			</div>
+			<Container>
+				<Hello compiler={"Typescript"} framework={"React"} />
+				<Menu />
+				<div className={className}>
+					{this.props.children}
+				</div>
+			</Container>
 		);
 	}
 }

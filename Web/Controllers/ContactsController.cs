@@ -2,6 +2,7 @@
 using SharedTypes.NET;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Web.Controllers
 {
@@ -18,10 +19,9 @@ namespace Web.Controllers
 
 		[HttpPost]	
 		[Route("Api/Contacts/GetContacts")]	
-		public GetContactsResponse GetContacts([FromBody] ContactSearch search)
+		public async Task<GetContactsResponse> GetContacts([FromBody] ContactSearch search)
 		{
-			var searchResults = _contacts.Where(c => c.Forename.ToLower().Contains(search.SearchTerm.ToLower())
-				|| c.Surname.ToLower().Contains(search.SearchTerm.ToLower())).ToList();
+			var searchResults = await SearchContacts(search.SearchTerm).ConfigureAwait(false);
 
 			return new GetContactsResponse
 			{
@@ -29,6 +29,15 @@ namespace Web.Controllers
 				TotalResultCount = searchResults.Count,
 				ResultsPerPage = 10
 			};
+		}
+
+		private async Task<List<Contact>> SearchContacts(string searchTerm)
+		{
+			await Task.Delay(3000);
+			var term = searchTerm.ToLower();
+			return _contacts
+				.Where(c => c.Forename.ToLower().Contains(term) || c.Surname.ToLower().Contains(term))
+				.ToList();
 		}
 	}
 }
