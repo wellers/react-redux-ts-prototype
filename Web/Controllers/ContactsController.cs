@@ -33,7 +33,9 @@ namespace Web.Controllers
 
 		private async Task<List<Contact>> SearchContacts(string searchTerm)
 		{
+			//simulate long-running task
 			await Task.Delay(3000);
+
 			var term = searchTerm.ToLower();
 			return _contacts
 				.Where(c => c.Forename.ToLower().Contains(term) || c.Surname.ToLower().Contains(term))
