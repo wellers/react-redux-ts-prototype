@@ -67,7 +67,8 @@ class ContactsContainer extends React.Component<Props, State> {
 	}
 
 	render() {
-		const { serverError } = this.props;
+		const { contacts, serverError } = this.props;
+		const { searchTerm } = this.state;
 		return (
 			<PageContentBox hideTrailingMargin={true}>
 				{serverError && (serverError.length > 0)
@@ -79,12 +80,12 @@ class ContactsContainer extends React.Component<Props, State> {
 						<Row className={"searchBar"}>
 							<Col className="col-xs-12">
 								<Form.Label htmlFor="searchTerm">What are you searching for?</Form.Label>
-								<Form.Control type="text" value={this.state.searchTerm} onChange={this._searchTermChange} onKeyDown={this._searchKeyDown} id="searchTerm"></Form.Control>
+								<Form.Control type="text" value={searchTerm} onChange={this._searchTermChange} onKeyDown={this._searchKeyDown} id="searchTerm"></Form.Control>
 							</Col>
 						</Row>
 						<Row>
 							<Col className="d-flex flex-row-reverse">
-								{this.props.contacts.isLoading
+								{contacts.isLoading
 									? <Button onClick={this._onSearch} disabled>
 										<span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>&nbsp;&nbsp;
 										<span>Searching...</span>
@@ -95,7 +96,7 @@ class ContactsContainer extends React.Component<Props, State> {
 						</Row>
 					</Col>
 				</Row>
-				{this.props.contacts.isLoading
+				{contacts.isLoading
 					? null
 					:
 					<Table>
@@ -106,13 +107,13 @@ class ContactsContainer extends React.Component<Props, State> {
 								<th>Surname</th>
 							</tr>
 						</thead>
-						{this.props.contacts.hasValue && (this.props.contacts.value.length == 0)
+						{contacts.hasValue && (contacts.value.length == 0)
 							? <tbody>
 								<tr>
 									<td colSpan={3}>No results</td>
 								</tr>
 							</tbody>
-							: this.renderResults(this.props.contacts)
+							: this.renderResults(contacts)
 						}
 					</Table>
 				}
