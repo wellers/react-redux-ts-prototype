@@ -34,7 +34,7 @@ namespace Web.Controllers
 		private async Task<List<Contact>> SearchContacts(string searchTerm)
 		{
 			//simulate long-running task
-			await Task.Delay(3000);
+			await Task.Delay(1000);
 
 			var term = searchTerm.ToLower();
 			return _contacts
